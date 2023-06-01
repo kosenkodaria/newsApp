@@ -20,11 +20,9 @@ function SideBar() {
           <Offcanvas.Title>Offcanvas</Offcanvas.Title>
         </Offcanvas.Header>
 
-        <SearchForm />
-
+      
         <Offcanvas.Body>
-          Some text as placeholder. In real life you can have the elements you
-          have chosen. Like, text, images, lists, etc.
+        <SearchForm  closeSideBar= {handleClose} />
         </Offcanvas.Body>
       </Offcanvas>
     </>
