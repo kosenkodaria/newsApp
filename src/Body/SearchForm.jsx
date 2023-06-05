@@ -1,119 +1,157 @@
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 
 
-function SearchForm ({closeSideBar}){
-const [articlesSortDisabled, setArticlesSortDisabled] = useState(false);
+
+function SearchForm({ closeSideBar }) {
+  const [articlesSortDisabled, setArticlesSortDisabled] = useState(false);
 
   const resultType = [
-  'articles',
-  'uriWgtList',
-  'langAggr',
-  'timeAggr',
-  'sourceAggr',
-  'sourceExAggr',
-  'authorAggr',
-  'keywordAggr',
-  'locAggr',
-  'conceptAggr',
-  'conceptGraph',
-  'categoryAggr',
-  'dateMentionAggr',
-  'sentimentAggr',
-  'recentActivityArticles',
-];
+    "articles",
+    "uriWgtList",
+    "langAggr",
+    "timeAggr",
+    "sourceAggr",
+    "sourceExAggr",
+    "authorAggr",
+    "keywordAggr",
+    "locAggr",
+    "conceptAggr",
+    "conceptGraph",
+    "categoryAggr",
+    "dateMentionAggr",
+    "sentimentAggr",
+    "recentActivityArticles",
+  ];
 
-const articlesSortBy = [
-  'date',
-  'rel',
-  'sourceImportance', 
-  'sourceAlexaGlobalRank', 
-  'sourceAlexaCountryRank', 
-  'socialScore', 
-  'facebookShares'
-   ];
-   const dataType = ['news','pr','blog'];
-   const handleSubmit = (event)=> {
+  const articlesSortBy = [
+    "date",
+    "rel",
+    "sourceImportance",
+    "sourceAlexaGlobalRank",
+    "sourceAlexaCountryRank",
+    "socialScore",
+    "facebookShares",
+  ];
+  const dataType = ["news", "pr", "blog"];
+  const handleSubmit = (event) => {
     event.preventDefault();
-    
+
     const data = {
       keyword: event.target.keyword.value,
       resultType: event.target.resultType.value,
       articlesSortBy: event.target.articlesSortBy.value,
-      dataType: [...event.target.dataType].filter((e) => e.checked).map((d) => d.value),
+      dataType: [...event.target.dataType]
+        .filter((e) => e.checked)
+        .map((d) => d.value),
+        lang:  [...event.target.lang]
+        .filter((e) => e.selected)
+        .map((d) => d.value),
+        dateStart: event.target.dateStart.value,
+        dateEnd: event.target.dateEnd.value
     };
-   console.log('data', data);
+    console.log("data", data);
 
-   closeSideBar();
+    closeSideBar();
   };
 
-  const handleResultTypeChange = (event)=>{
-    if(event.target.value !== 'articles'){
+  const handleResultTypeChange = (event) => {
+    if (event.target.value !== "articles") {
       setArticlesSortDisabled(true);
-    }else {
-      setArticlesSortDisabled(false)
+    } else {
+      setArticlesSortDisabled(false);
     }
   };
 
-  const languages = ['English','Russian','Estonian','German','French'];
+  const languages = [
+    {
+      label:'English',
+      value:'eng'
+    },
+    {
+      label:'Eesti',
+      value:'est'
+    },
+    {
+      label:'Русский',
+      value:'rus'
+    },
+    {
+      label:'German',
+      value:'deu'
+    }
+  ];
 
+  return (
+    <Form onSubmit={handleSubmit}>
+      <Form.Group className="mb-3">
+        <Form.Label>Keywords</Form.Label>
+        <Form.Control type="text" name="keyword" />
+      </Form.Group>
 
-    return(
-      <Form onSubmit={handleSubmit}>
+      <Form.Group className="mb-3">
+        <Form.Label>Result Type</Form.Label>
+        <Form.Select name="resultType" onChange={handleResultTypeChange}>
+          {resultType.map((type) => (
+            <option value={type} key={type}>
+              {type}{" "}
+            </option>
+          ))}
+        </Form.Select>
+      </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Keywords</Form.Label>
-          <Form.Control type="text" name="keyword" />
-          </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Label>Articles sort by</Form.Label>
+        <Form.Select name="articlesSortBy" disabled={articlesSortDisabled}>
+          {articlesSortBy.map((type) => (
+            <option value={type} key={type}>
+              {type}{" "}
+            </option>
+          ))}
+        </Form.Select>
+      </Form.Group>
 
-        <Form.Group  className="mb-3" >
-          <Form.Label>Result Type</Form.Label>
-          <Form.Select name="resultType" onChange={handleResultTypeChange}>
-            {resultType.map(type => (
-              <option value={type} key={type}>{type} </option>
-            ))}
-       </Form.Select>
-        </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Label>Data type</Form.Label>
+        {dataType.map((type) => (
+          <Form.Check
+            type="checkbox"
+            label={type}
+            key={type}
+            name="dataType"
+            value={type}
+          />
+        ))}
+      </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Articles sort by</Form.Label>
-          <Form.Select name="articlesSortBy" disabled={articlesSortDisabled}>
-            {articlesSortBy.map(type => (
-              <option value={type} key={type}>{type} </option>
-            ))}
-       </Form.Select>
-        </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Label>Language</Form.Label>
+        <Form.Select name="lang" multiple>
+          {languages.map(({value , label}) => (
+            <option value={value} key={value}>
+              {label}
+            </option>
+          ))}
+        </Form.Select>
+      </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Data type</Form.Label>
-          {dataType.map(type => (
-            <Form.Check  type="checkbox" label={type} key={type} name ="dataType" value={type}/>
-          ) )}
-        </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Label>Date start:</Form.Label>
+        <Form.Control type="date" name="dateStart" />
+      </Form.Group>
 
-
-        <label for="customRange3" class="form-label">Date range:</label> 
-        <br/>
-        <label htmlFor="dateRange">(choose from the last 12 month)</label>
-        <input type="range" class="form-range" min="0" max="6" step="0.5" id="customRange"></input>
-        
-
-        <Form.Group className="mb-3">
-          <Form.Label>Choose the language:</Form.Label>
-          <Form.Select name="languages">
-            {languages.map(type => (
-              <option value={type} key={type}>{type} </option>
-            ))}
-       </Form.Select>
-        </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Label>Date end:</Form.Label>
+        <Form.Control type="date" name="dateEnd" />
+      </Form.Group>
 
       <Button variant="primary" type="submit">
-      Close side bar
-    </Button>
+        Close side bar
+      </Button>
     </Form>
-       )
+  );
 }
 
-export default SearchForm; 
+export default SearchForm;

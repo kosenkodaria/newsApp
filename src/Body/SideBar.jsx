@@ -4,7 +4,10 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import SearchForm from './SearchForm';
 
 
+
 function SideBar() {
+ 
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
