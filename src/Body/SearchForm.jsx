@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
+import { getArticles } from "../services/apiService";
 
 
-
-function SearchForm({ closeSideBar }) {
+function SearchForm({ closeSideBar,submittedData,setSubmittedData }) {
   const [articlesSortDisabled, setArticlesSortDisabled] = useState(false);
+
 
   const resultType = [
     "articles",
@@ -52,7 +53,10 @@ function SearchForm({ closeSideBar }) {
         dateStart: event.target.dateStart.value,
         dateEnd: event.target.dateEnd.value
     };
+
+    setSubmittedData(data);
     console.log("data", data);
+    getArticles(data).then(res => console.log('res', res));
 
     closeSideBar();
   };
@@ -88,12 +92,12 @@ function SearchForm({ closeSideBar }) {
     <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3">
         <Form.Label>Keywords</Form.Label>
-        <Form.Control type="text" name="keyword" />
+        <Form.Control type="text" name="keyword" defaultValue={submittedData?.keyword} />
       </Form.Group>
 
       <Form.Group className="mb-3">
         <Form.Label>Result Type</Form.Label>
-        <Form.Select name="resultType" onChange={handleResultTypeChange}>
+        <Form.Select name="resultType" onChange={handleResultTypeChange} defaultValue={submittedData?.resultType}>
           {resultType.map((type) => (
             <option value={type} key={type}>
               {type}{" "}
@@ -104,7 +108,7 @@ function SearchForm({ closeSideBar }) {
 
       <Form.Group className="mb-3">
         <Form.Label>Articles sort by</Form.Label>
-        <Form.Select name="articlesSortBy" disabled={articlesSortDisabled}>
+        <Form.Select name="articlesSortBy" disabled={articlesSortDisabled} defaultValue={submittedData?.articlesSortBy}>
           {articlesSortBy.map((type) => (
             <option value={type} key={type}>
               {type}{" "}
@@ -122,13 +126,14 @@ function SearchForm({ closeSideBar }) {
             key={type}
             name="dataType"
             value={type}
+            defaultChecked ={submittedData?.dataType.includes(type)}
           />
         ))}
       </Form.Group>
 
       <Form.Group className="mb-3">
         <Form.Label>Language</Form.Label>
-        <Form.Select name="lang" multiple>
+        <Form.Select name="lang" multiple defaultValue={submittedData?.lang}>
           {languages.map(({value , label}) => (
             <option value={value} key={value}>
               {label}
@@ -139,16 +144,16 @@ function SearchForm({ closeSideBar }) {
 
       <Form.Group className="mb-3">
         <Form.Label>Date start:</Form.Label>
-        <Form.Control type="date" name="dateStart" />
+        <Form.Control type="date" name="dateStart" defaultValue={submittedData?.dateStart}/>
       </Form.Group>
 
       <Form.Group className="mb-3">
         <Form.Label>Date end:</Form.Label>
-        <Form.Control type="date" name="dateEnd" />
+        <Form.Control type="date" name="dateEnd" defaultValue={submittedData?.dateEnd}/>
       </Form.Group>
 
-      <Button variant="primary" type="submit">
-        Close side bar
+      <Button variant="primary" type="submit" className="w-100">
+        Search
       </Button>
     </Form>
   );
