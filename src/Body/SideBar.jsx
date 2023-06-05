@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import SearchForm from './SearchForm';
 
+
 function SideBar() {
   const [show, setShow] = useState(false);
 
@@ -24,6 +25,7 @@ function SideBar() {
         <Offcanvas.Body>
         <SearchForm  closeSideBar= {handleClose} />
         </Offcanvas.Body>
+
       </Offcanvas>
     </>
   );
