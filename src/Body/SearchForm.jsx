@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 
+
 function SearchForm ({closeSideBar}){
 const [articlesSortDisabled, setArticlesSortDisabled] = useState(false);
 
@@ -54,7 +55,10 @@ const articlesSortBy = [
     }else {
       setArticlesSortDisabled(false)
     }
-  }
+  };
+
+  const languages = ['English','Russian','Estonian','German','French'];
+
 
     return(
       <Form onSubmit={handleSubmit}>
@@ -88,7 +92,23 @@ const articlesSortBy = [
             <Form.Check  type="checkbox" label={type} key={type} name ="dataType" value={type}/>
           ) )}
         </Form.Group>
-       
+
+
+        <label for="customRange3" class="form-label">Date range:</label> 
+        <br/>
+        <label htmlFor="dateRange">(choose from the last 12 month)</label>
+        <input type="range" class="form-range" min="0" max="6" step="0.5" id="customRange"></input>
+        
+
+        <Form.Group className="mb-3">
+          <Form.Label>Choose the language:</Form.Label>
+          <Form.Select name="languages">
+            {languages.map(type => (
+              <option value={type} key={type}>{type} </option>
+            ))}
+       </Form.Select>
+        </Form.Group>
+
       <Button variant="primary" type="submit">
       Close side bar
     </Button>
