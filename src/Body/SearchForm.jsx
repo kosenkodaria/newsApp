@@ -4,10 +4,8 @@ import Form from "react-bootstrap/Form";
 
 import { getArticles } from "../services/apiService";
 
-
-function SearchForm({ closeSideBar,submittedData,setSubmittedData }) {
+function SearchForm({ closeSideBar, submittedData, setSubmittedData }) {
   const [articlesSortDisabled, setArticlesSortDisabled] = useState(false);
-
 
   const resultType = [
     "articles",
@@ -47,16 +45,16 @@ function SearchForm({ closeSideBar,submittedData,setSubmittedData }) {
       dataType: [...event.target.dataType]
         .filter((e) => e.checked)
         .map((d) => d.value),
-        lang:  [...event.target.lang]
+      lang: [...event.target.lang]
         .filter((e) => e.selected)
         .map((d) => d.value),
-        dateStart: event.target.dateStart.value,
-        dateEnd: event.target.dateEnd.value
+      dateStart: event.target.dateStart.value,
+      dateEnd: event.target.dateEnd.value,
     };
 
     setSubmittedData(data);
     console.log("data", data);
-    getArticles(data).then(res => console.log('res', res));
+    getArticles(data).then((res) => console.log("res", res));
 
     closeSideBar();
   };
@@ -71,33 +69,44 @@ function SearchForm({ closeSideBar,submittedData,setSubmittedData }) {
 
   const languages = [
     {
-      label:'English',
-      value:'eng'
+      label: "English",
+      value: "eng",
     },
     {
-      label:'Eesti',
-      value:'est'
+      label: "Eesti",
+      value: "est",
     },
     {
-      label:'Русский',
-      value:'rus'
+      label: "Русский",
+      value: "rus",
     },
     {
-      label:'German',
-      value:'deu'
-    }
+      label: "German",
+      value: "deu",
+    },
   ];
+
+
+
 
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3">
         <Form.Label>Keywords</Form.Label>
-        <Form.Control type="text" name="keyword" defaultValue={submittedData?.keyword} />
+        <Form.Control
+          type="text"
+          name="keyword"
+          defaultValue={submittedData?.keyword}
+        />
       </Form.Group>
 
       <Form.Group className="mb-3">
         <Form.Label>Result Type</Form.Label>
-        <Form.Select name="resultType" onChange={handleResultTypeChange} defaultValue={submittedData?.resultType}>
+        <Form.Select
+          name="resultType"
+          onChange={handleResultTypeChange}
+          defaultValue={submittedData?.resultType}
+        >
           {resultType.map((type) => (
             <option value={type} key={type}>
               {type}{" "}
@@ -108,7 +117,11 @@ function SearchForm({ closeSideBar,submittedData,setSubmittedData }) {
 
       <Form.Group className="mb-3">
         <Form.Label>Articles sort by</Form.Label>
-        <Form.Select name="articlesSortBy" disabled={articlesSortDisabled} defaultValue={submittedData?.articlesSortBy}>
+        <Form.Select
+          name="articlesSortBy"
+          disabled={articlesSortDisabled}
+          defaultValue={submittedData?.articlesSortBy}
+        >
           {articlesSortBy.map((type) => (
             <option value={type} key={type}>
               {type}{" "}
@@ -126,7 +139,7 @@ function SearchForm({ closeSideBar,submittedData,setSubmittedData }) {
             key={type}
             name="dataType"
             value={type}
-            defaultChecked ={submittedData?.dataType.includes(type)}
+            defaultChecked={submittedData?.dataType.includes(type)}
           />
         ))}
       </Form.Group>
@@ -134,7 +147,7 @@ function SearchForm({ closeSideBar,submittedData,setSubmittedData }) {
       <Form.Group className="mb-3">
         <Form.Label>Language</Form.Label>
         <Form.Select name="lang" multiple defaultValue={submittedData?.lang}>
-          {languages.map(({value , label}) => (
+          {languages.map(({ value, label }) => (
             <option value={value} key={value}>
               {label}
             </option>
@@ -144,12 +157,20 @@ function SearchForm({ closeSideBar,submittedData,setSubmittedData }) {
 
       <Form.Group className="mb-3">
         <Form.Label>Date start:</Form.Label>
-        <Form.Control type="date" name="dateStart" defaultValue={submittedData?.dateStart}/>
+        <Form.Control
+          type="date"
+          name="dateStart"
+          defaultValue={submittedData?.dateStart}
+        />
       </Form.Group>
 
       <Form.Group className="mb-3">
         <Form.Label>Date end:</Form.Label>
-        <Form.Control type="date" name="dateEnd" defaultValue={submittedData?.dateEnd}/>
+        <Form.Control
+          type="date"
+          name="dateEnd"
+          defaultValue={submittedData?.dateEnd}
+        />
       </Form.Group>
 
       <Button variant="primary" type="submit" className="w-100">

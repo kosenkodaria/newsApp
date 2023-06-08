@@ -6,10 +6,21 @@ import SearchForm from './SearchForm';
 
 
 function SideBar() {
+
+  
+  const defaultData = {
+    keyword: null,
+    articlesSortBy: "date",
+    dataType: ["news"],
+    dateStart: "2023-05-01",
+    dateEnd: "2023-06-06",
+    lang: ['eng'],
+    resultType: "articles"
+  };
  
 
   const [show, setShow] = useState(false);
-  const [submittedData, setSubmittedData] = useState(null);
+  const [submittedData, setSubmittedData] = useState(defaultData);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
