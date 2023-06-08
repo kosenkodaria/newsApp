@@ -2,28 +2,18 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import SearchForm from './SearchForm';
+import { defaultData } from '../services/apiService';
 
 
 
 function SideBar() {
-
-  
-  const defaultData = {
-    keyword: null,
-    articlesSortBy: "date",
-    dataType: ["news"],
-    dateStart: "2023-05-01",
-    dateEnd: "2023-06-06",
-    lang: ['eng'],
-    resultType: "articles"
-  };
- 
 
   const [show, setShow] = useState(false);
   const [submittedData, setSubmittedData] = useState(defaultData);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleRestore = () => setSubmittedData(defaultData);
 
   return (
     <>
@@ -38,7 +28,11 @@ function SideBar() {
 
       
         <Offcanvas.Body>
-        <SearchForm  closeSideBar= {handleClose} submittedData={submittedData} setSubmittedData={setSubmittedData} />
+        <SearchForm  closeSideBar= {handleClose}
+         submittedData={submittedData}
+          setSubmittedData={setSubmittedData} 
+          handleRestore={handleRestore}
+          />
         </Offcanvas.Body>
 
       </Offcanvas>

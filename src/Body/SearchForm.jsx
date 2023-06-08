@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 
 import { getArticles } from "../services/apiService";
 
-function SearchForm({ closeSideBar, submittedData, setSubmittedData }) {
+function SearchForm({ closeSideBar, submittedData, setSubmittedData, handleRestore }) {
   const [articlesSortDisabled, setArticlesSortDisabled] = useState(false);
 
   const resultType = [
@@ -175,6 +175,10 @@ function SearchForm({ closeSideBar, submittedData, setSubmittedData }) {
 
       <Button variant="primary" type="submit" className="w-100">
         Search
+      </Button>
+
+      <Button variant = "light" className="w-100 mt-3" onClick={handleRestore}>
+        Restore
       </Button>
     </Form>
   );
