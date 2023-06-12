@@ -55,6 +55,7 @@ function SearchForm({ closeSideBar, submittedData, setSubmittedData, handleResto
     setSubmittedData(data);
     console.log("data", data);
     getArticles(data).then((res) => console.log("res", res));
+    // !!!!! catch 
 
     closeSideBar();
   };
