@@ -17,9 +17,13 @@ function SideBar() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow} className="my-3">
+
+    <nav className="subNav">
+      <Button variant="dark" onClick={handleShow} className="my-3">
         Search
       </Button>
+      </nav>
+
 
       <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>

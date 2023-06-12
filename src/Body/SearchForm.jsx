@@ -173,7 +173,7 @@ function SearchForm({ closeSideBar, submittedData, setSubmittedData, handleResto
         />
       </Form.Group>
 
-      <Button variant="primary" type="submit" className="w-100">
+      <Button variant="dark" type="submit" className="w-100">
         Search
       </Button>
 

@@ -1,1 +1,54 @@
 @import "~bootstrap/scss/bootstrap";
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+);
+
+html, body{
+    margin: 0;
+    padding: 0;
+}
+
+.subNav{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    position: 0;
+    padding: 0;
+    margin: 0;
+    max-width: 1440px;
+}
+a.navbar-brand{
+    margin-left: 5px;
+}
+
+button.my-3{
+    margin:5px;
+    @media (max-width: 426px){
+       width: 95%;
+       text-align: center;}
+}
+
+button.my-3:hover{background-color: $primary}
+
+div.g-4{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.offcanvas-body{color: $primary}
+.offcanvas-header{color:$primary}
+
+.card:hover{
+    color: $primary;
+    transform: scale(1.05);
+}
+
