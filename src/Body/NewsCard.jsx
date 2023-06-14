@@ -1,6 +1,7 @@
 import Card from "react-bootstrap/Card";
 import NewsModal from "./NewsModal";
 import { useState } from "react";
+import moment from "moment";
 
 function NewsCard({ news }) {
 
@@ -23,7 +24,7 @@ function NewsCard({ news }) {
         </Card.Text>
       </Card.Body>
       <Card.Footer>
-        <small className="text-muted">{news.dateTime}</small>
+        <small className="text-muted">{moment(news.dateTime).format("DD.MM.YYYY HH:mm:ss")}</small>
       </Card.Footer>
     </Card>
     {showModal && <NewsModal news = {news} handleClose={handleClose}/>}

@@ -1,5 +1,6 @@
 import Image from 'react-bootstrap/Image';
 import Modal from 'react-bootstrap/Modal';
+import moment from 'moment';
 
 function NewsModal({handleClose, news}) {
     return (
@@ -12,7 +13,7 @@ function NewsModal({handleClose, news}) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Published: {news.dateTimePub}
+            Published: {moment(news.dateTimePub).format("DD.MM.YYYY  HH:mm:ss")}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

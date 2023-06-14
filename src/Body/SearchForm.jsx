@@ -3,9 +3,19 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 import { getArticles } from "../services/apiService";
+// import moment from "moment";
+import ErrorModal from "../ErrorModal";
 
-function SearchForm({ closeSideBar, submittedData, setSubmittedData, handleRestore }) {
+function SearchForm({
+  closeSideBar,
+  submittedData,
+  setSubmittedData,
+  handleRestore,
+  setNewsList,
+}) {
   const [articlesSortDisabled, setArticlesSortDisabled] = useState(false);
+
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const resultType = [
     "articles",
@@ -40,6 +50,7 @@ function SearchForm({ closeSideBar, submittedData, setSubmittedData, handleResto
 
     const data = {
       keyword: event.target.keyword.value,
+      // resultType: event.target.resultType.value,
       resultType: event.target.resultType.value,
       articlesSortBy: event.target.articlesSortBy.value,
       dataType: [...event.target.dataType]
@@ -54,10 +65,16 @@ function SearchForm({ closeSideBar, submittedData, setSubmittedData, handleResto
 
     setSubmittedData(data);
     console.log("data", data);
-    getArticles(data).then((res) => console.log("res", res));
-    // !!!!! catch 
-
-    closeSideBar();
+    getArticles(data)
+      .then((res) => {
+        closeSideBar();
+        setNewsList(res.articles.results);
+      })
+      .catch((error) => setErrorMessage(error.toString()));
+    // !!!!! catch
+    // if (data.dateEnd > moment().calendar("sameDay")) {
+    //   throw new Error("Unprocessable Entity, 422 Error");
+    // }
   };
 
   const handleResultTypeChange = (event) => {
@@ -87,101 +104,105 @@ function SearchForm({ closeSideBar, submittedData, setSubmittedData, handleResto
     },
   ];
 
-
-
-
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3">
-        <Form.Label>Keywords</Form.Label>
-        <Form.Control
-          type="text"
-          name="keyword"
-          defaultValue={submittedData?.keyword}
-        />
-      </Form.Group>
-
-      <Form.Group className="mb-3">
-        <Form.Label>Result Type</Form.Label>
-        <Form.Select
-          name="resultType"
-          onChange={handleResultTypeChange}
-          defaultValue={submittedData?.resultType}
-        >
-          {resultType.map((type) => (
-            <option value={type} key={type}>
-              {type}{" "}
-            </option>
-          ))}
-        </Form.Select>
-      </Form.Group>
-
-      <Form.Group className="mb-3">
-        <Form.Label>Articles sort by</Form.Label>
-        <Form.Select
-          name="articlesSortBy"
-          disabled={articlesSortDisabled}
-          defaultValue={submittedData?.articlesSortBy}
-        >
-          {articlesSortBy.map((type) => (
-            <option value={type} key={type}>
-              {type}{" "}
-            </option>
-          ))}
-        </Form.Select>
-      </Form.Group>
-
-      <Form.Group className="mb-3">
-        <Form.Label>Data type</Form.Label>
-        {dataType.map((type) => (
-          <Form.Check
-            type="checkbox"
-            label={type}
-            key={type}
-            name="dataType"
-            value={type}
-            defaultChecked={submittedData?.dataType.includes(type)}
+    <>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3">
+          <Form.Label>Keywords</Form.Label>
+          <Form.Control
+            type="text"
+            name="keyword"
+            defaultValue={submittedData?.keyword}
           />
-        ))}
-      </Form.Group>
+        </Form.Group>
 
-      <Form.Group className="mb-3">
-        <Form.Label>Language</Form.Label>
-        <Form.Select name="lang" multiple defaultValue={submittedData?.lang}>
-          {languages.map(({ value, label }) => (
-            <option value={value} key={value}>
-              {label}
-            </option>
+        <Form.Group className="mb-3">
+          <Form.Label>Result Type</Form.Label>
+          <Form.Select
+            name="resultType"
+            onChange={handleResultTypeChange}
+            defaultValue={submittedData?.resultType}
+          >
+            {resultType.map((type) => (
+              <option value={type} key={type}>
+                {type}{" "}
+              </option>
+            ))}
+          </Form.Select>
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Articles sort by</Form.Label>
+          <Form.Select
+            name="articlesSortBy"
+            disabled={articlesSortDisabled}
+            defaultValue={submittedData?.articlesSortBy}
+          >
+            {articlesSortBy.map((type) => (
+              <option value={type} key={type}>
+                {type}{" "}
+              </option>
+            ))}
+          </Form.Select>
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Data type</Form.Label>
+          {dataType.map((type) => (
+            <Form.Check
+              type="checkbox"
+              label={type}
+              key={type}
+              name="dataType"
+              value={type}
+              defaultChecked={submittedData?.dataType.includes(type)}
+            />
           ))}
-        </Form.Select>
-      </Form.Group>
+        </Form.Group>
 
-      <Form.Group className="mb-3">
-        <Form.Label>Date start:</Form.Label>
-        <Form.Control
-          type="date"
-          name="dateStart"
-          defaultValue={submittedData?.dateStart}
-        />
-      </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Language</Form.Label>
+          <Form.Select name="lang" multiple defaultValue={submittedData?.lang}>
+            {languages.map(({ value, label }) => (
+              <option value={value} key={value}>
+                {label}
+              </option>
+            ))}
+          </Form.Select>
+        </Form.Group>
 
-      <Form.Group className="mb-3">
-        <Form.Label>Date end:</Form.Label>
-        <Form.Control
-          type="date"
-          name="dateEnd"
-          defaultValue={submittedData?.dateEnd}
-        />
-      </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Date start:</Form.Label>
+          <Form.Control
+            type="date"
+            name="dateStart"
+            defaultValue={submittedData?.dateStart}
+          />
+        </Form.Group>
 
-      <Button variant="dark" type="submit" className="w-100">
-        Search
-      </Button>
+        <Form.Group className="mb-3">
+          <Form.Label>Date end:</Form.Label>
+          <Form.Control
+            type="date"
+            name="dateEnd"
+            defaultValue={submittedData?.dateEnd}
+          />
+        </Form.Group>
 
-      <Button variant = "light" className="w-100 mt-3" onClick={handleRestore}>
-        Restore
-      </Button>
-    </Form>
+        <Button variant="dark" type="submit" className="w-100">
+          Search
+        </Button>
+
+        <Button variant="light" className="w-100 mt-3" onClick={handleRestore}>
+          Restore
+        </Button>
+      </Form>
+
+      <ErrorModal
+        errorMessage={errorMessage}
+        handleClose={() => setErrorMessage(null)}
+      />
+    </>
   );
 }
 

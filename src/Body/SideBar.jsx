@@ -6,7 +6,8 @@ import { defaultData } from '../services/apiService';
 
 
 
-function SideBar() {
+
+function SideBar({ setNewsList }) {
 
   const [show, setShow] = useState(false);
   const [submittedData, setSubmittedData] = useState(defaultData);
@@ -36,10 +37,12 @@ function SideBar() {
          submittedData={submittedData}
           setSubmittedData={setSubmittedData} 
           handleRestore={handleRestore}
+          setNewsList={setNewsList}
           />
         </Offcanvas.Body>
 
       </Offcanvas>
+      
     </>
   );
 }
