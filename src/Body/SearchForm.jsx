@@ -12,6 +12,7 @@ function SearchForm({
   setSubmittedData,
   handleRestore,
   setNewsList,
+  setInfo,
 }) {
   const [articlesSortDisabled, setArticlesSortDisabled] = useState(false);
 
@@ -66,12 +67,20 @@ function SearchForm({
     setSubmittedData(data);
     console.log("data", data);
     getArticles(data)
-      .then((res) => {
+      .then(({ articles, info }) => {
+        articles && setNewsList(articles.results);
+        info ? setInfo(info) : setInfo(null);
         closeSideBar();
-        setNewsList(res.articles.results);
       })
       .catch((error) => setErrorMessage(error.toString()));
-    // !!!!! catch
+    // .then((res) => {
+    //   closeSideBar();
+    //   setNewsList(res.articles.results);
+    //   if (res.info) {
+    //     setInfo(res.info);
+    //   }
+    // })
+
     // if (data.dateEnd > moment().calendar("sameDay")) {
     //   throw new Error("Unprocessable Entity, 422 Error");
     // }
