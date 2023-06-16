@@ -48,6 +48,7 @@ function News({ newsList, setNewsList, info , setInfo }) {
           <b>Yay! You have seen it all</b>
         </p>
       }
+      scrollThreshold={1}
       >
          <Row xs={1} md={2} lg={3} className="g-4">
         {newsList?.map((news, idx) => (

@@ -18,6 +18,7 @@ function SearchForm({
 
   const [errorMessage, setErrorMessage] = useState(null);
 
+
   const resultType = [
     "articles",
     "uriWgtList",
@@ -93,6 +94,7 @@ function SearchForm({
       setArticlesSortDisabled(false);
     }
   };
+
 
   const languages = [
     {

@@ -11,7 +11,7 @@ function NewsModal({handleClose, news}) {
         centered
         onHide={handleClose}
       >
-        <Modal.Header closeButton>
+        <Modal.Header closeButton >
           <Modal.Title id="contained-modal-title-vcenter">
             Published: {moment(news.dateTimePub).format("DD.MM.YYYY  HH:mm:ss")}
           </Modal.Title>

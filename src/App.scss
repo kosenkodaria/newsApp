@@ -33,24 +33,55 @@ a.navbar-brand{
     max-width: 1440px;
 }
 
-button.my-3{
+button.search{
+  background-color: $dark;
+    padding: 5px 15px;
+    border-radius: 0;
     margin:5px;
+
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    
     @media (max-width: 426px){
        width: 95%;
        text-align: center;}
 }
 
-button.my-3:hover{background-color: $primary}
+button.search:hover{ background-color: $primary}
 
 div.g-4{
+    margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
 }
 
-.offcanvas-body{color: $primary}
+.offcanvas-body{
+    color: $primary;
+    background-color: white 0.4;
+}
 .offcanvas-header{color:$primary}
 
 .card:hover{
     color: $primary;
-    transform: scale(1.05);
+    transform: scale(1.025);
+    cursor: pointer;
+}
+
+.subNav{
+    border-bottom: 1px solid $dark;
+    height: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    
+}
+
+.modal-content{
+    background-color: $dark;
+    color: $light;
+}
+
+
+
+.img-fluid{
+    width: 100%;
 }

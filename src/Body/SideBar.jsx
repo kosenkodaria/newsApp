@@ -18,9 +18,9 @@ function SideBar({ setNewsList , setInfo}) {
 
   return (
     <>
-
+    {/* className="my-3" */}
     <nav className="subNav">
-      <Button variant="dark" onClick={handleShow} className="my-3">
+      <Button variant="dark" onClick={handleShow} className='search'>
         Search
       </Button>
       </nav>
