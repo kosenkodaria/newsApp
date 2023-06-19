@@ -1,43 +1,40 @@
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import NewsCard from "./NewsCard";
 import { useEffect, useState } from "react";
-import { getArticles } from "../services/apiService";
+import { getEvents } from "../services/apiService";
 import ErrorModal from "../ErrorModal";
 import Alert from "react-bootstrap/Alert";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useParams } from "react-router-dom";
+import EventsCard from "./EventsCard";
 
-function News({ newsList, setNewsList, info, setInfo }) {
+function Events({ eventsList, setEventsList, info, setInfo }) {
   const [errorMessage, setErrorMessage] = useState(null);
   const [page, setPage] = useState(1);
+  const params = useParams();
   const { keyword } = useParams();
 
   useEffect(() => {
-    getArticles({
+    getEvents({
+        resultType: 'events',
       articlesPage: page,
       ...(keyword ? { keyword } : {}),
     })
-      .then(({ articles, info }) => {
-        articles && setNewsList([...(newsList || []), ...articles.results]);
+      .then(({ events, info }) => {
+        events && setEventsList([...(eventsList || []), ...events.results]);
         info ? setInfo(info) : setInfo(null);
       })
-      // .then((data) => {
-      //   setNewsList(data.articles.results);
-      //   if (data.info) {
-      //     setInfo(data.info);
-      //   }
-      // })
       .catch((error) => setErrorMessage(error.toString()));
-  }, [setNewsList, setInfo, page, keyword]);
+  }, [setEventsList, setInfo, page, keyword]);
 
-  return (
+  return( 
     <>
-      {info && <Alert variant="primary">{info}</Alert>}
+  <>Events List {params?.keyword}</>
+  {info && <Alert variant="primary">{info}</Alert>}
 
-      {newsList?.length && (
+      {eventsList?.length && (
         <InfiniteScroll
-          dataLength={newsList?.length}
+          dataLength={eventsList?.length}
           next={() => setPage(page + 1)}
           hasMore
           loader={<h4>Loading...</h4>}
@@ -49,21 +46,19 @@ function News({ newsList, setNewsList, info, setInfo }) {
           scrollThreshold={1}
         >
           <Row xs={1} md={2} lg={3} className="g-4">
-            {newsList?.map((news, idx) => (
+            {eventsList?.map((events, idx) => (
               <Col key={idx}>
-                <NewsCard news={news} />
+                <EventsCard events={events} />
               </Col>
             ))}
           </Row>
         </InfiniteScroll>
       )}
-
-      <ErrorModal
+  <ErrorModal
         errorMessage={errorMessage}
         handleClose={() => setErrorMessage(null)}
       />
-    </>
+  </>
   );
 }
-
-export default News;
+export default Events;

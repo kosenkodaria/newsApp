@@ -12,6 +12,7 @@ export   const defaultData = {
     lang: 'eng',
     dateStart: moment().subtract(1, 'month').format('YYYY-MM-DD') ,
     articlesCount: 12,
+    isDuplicateFilter:'skipDuplicates',
   };
 
 export async function getArticles(params = {}) {
@@ -29,4 +30,21 @@ export async function getArticles(params = {}) {
       throw new Error('Api error: ' + data.error);
     }
     return data;
+}
+
+export async function getEvents(params = {}) {
+
+  const urlParams = new URLSearchParams ({...defaultData, ...params, apiKey});
+
+  const response = await fetch(`${apiUrl}/event/getEvents?${urlParams}`);
+
+  if (!response.ok) {
+    throw new Error('Error in response , status code: ' + response.status)
+  }
+
+  const data = await response.json();
+  if(data.error){
+    throw new Error('Api error: ' + data.error);
+  }
+  return data;
 }
