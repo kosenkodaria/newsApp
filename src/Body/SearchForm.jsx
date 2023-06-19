@@ -11,7 +11,7 @@ function SearchForm({
   submittedData,
   setSubmittedData,
   handleRestore,
-  setNewsList,
+  setDataList,
   setInfo,
 }) {
   const [articlesSortDisabled, setArticlesSortDisabled] = useState(false);
@@ -64,7 +64,7 @@ function SearchForm({
     console.log("data", data);
     getArticles(data)
       .then(({ articles, info }) => {
-        articles && setNewsList(articles.results);
+        articles && setDataList(articles.results);
         info ? setInfo(info) : setInfo(null);
         closeSideBar();
       })

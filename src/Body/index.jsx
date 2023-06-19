@@ -5,20 +5,19 @@ import { Routes, Route } from "react-router-dom";
 import Events from "./Events";
 
 function Body() {
-  const [newsList, setNewsList] = useState(null);
-  const [eventsList, setEventsList] = useState(null);
+  const [dataList, setDataList] = useState(null);
   const [info, setInfo] = useState(null);
   return (
     <>
-      <SideBar setNewsList={setNewsList} setInfo={setInfo} />
+      <SideBar setDataList={setDataList} setInfo={setInfo} />
 
       <Routes>
         <Route
           path="/"
           element={
             <News
-              newsList={newsList}
-              setNewsList={setNewsList}
+              dataList={dataList}
+              setDataList={setDataList}
               info={info}
               setInfo={setInfo}
             />
@@ -28,8 +27,8 @@ function Body() {
           path="/:keyword"
           element={
             <News
-              newsList={newsList}
-              setNewsList={setNewsList}
+              dataList={dataList}
+              setDataList={setDataList}
               info={info}
               setInfo={setInfo}
             />
@@ -39,8 +38,8 @@ function Body() {
           path="/events"
           element={
             <Events
-              eventsList={eventsList}
-              setEventsList={setEventsList}
+              dataList={dataList}
+              setDataList={setDataList}
               info={info}
               setInfo={setInfo}
             />
@@ -50,8 +49,8 @@ function Body() {
           path="/events/:keyword"
           element={
             <Events
-              eventsList={eventsList}
-              setEventsList={setEventsList}
+              dataList={dataList}
+              setDataList={setDataList}
               info={info}
               setInfo={setInfo}
             />
