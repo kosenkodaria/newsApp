@@ -2,14 +2,11 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { setSearchData, setDataList } from "../services/stateService";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { defaultData } from "../services/apiService";
 
-function SearchForm({
-  closeSideBar,
-  submittedData,
-  setSubmittedData,
-  handleRestore,
-}) {
+function SearchForm({ closeSideBar }) {
+  const searchData = useSelector((state) => state.searchData);
   const [articlesSortDisabled, setArticlesSortDisabled] = useState(false);
 
   const dispatch = useDispatch();
@@ -55,7 +52,6 @@ function SearchForm({
       dateEnd: event.target.dateEnd.value,
     };
 
-    setSubmittedData(data);
     dispatch(setSearchData(data));
     dispatch(setDataList(null));
 
@@ -109,6 +105,11 @@ function SearchForm({
     },
   ];
 
+  const handleRestore = () => {
+    dispatch(setSearchData({}));
+    closeSideBar();
+  };
+
   return (
     <>
       <Form onSubmit={handleSubmit}>
@@ -117,7 +118,7 @@ function SearchForm({
           <Form.Control
             type="text"
             name="keyword"
-            defaultValue={submittedData?.keyword}
+            defaultValue={searchData?.keyword || defaultData.keyword}
           />
         </Form.Group>
 
@@ -126,7 +127,7 @@ function SearchForm({
           <Form.Select
             name="resultType"
             onChange={handleResultTypeChange}
-            defaultValue={submittedData?.resultType}
+            defaultValue={searchData?.resultType || defaultData.resultType}
           >
             {resultType.map((type) => (
               <option value={type} key={type}>
@@ -141,7 +142,7 @@ function SearchForm({
           <Form.Select
             name="articlesSortBy"
             disabled={articlesSortDisabled}
-            defaultValue={submittedData?.articlesSortBy}
+            defaultValue={searchData?.articlesSortBy || defaultData.articlesSortBy}
           >
             {articlesSortBy.map((type) => (
               <option value={type} key={type}>
@@ -160,14 +161,14 @@ function SearchForm({
               key={type}
               name="dataType"
               value={type}
-              defaultChecked={submittedData?.dataType.includes(type)}
+              defaultChecked={searchData.dataType?.includes(type) || defaultData?.dataType.includes(type)}
             />
           ))}
         </Form.Group>
 
         <Form.Group className="mb-3">
           <Form.Label>Language</Form.Label>
-          <Form.Select name="lang" defaultValue={submittedData?.lang}>
+          <Form.Select name="lang" defaultValue={searchData?.lang || defaultData.lang}>
             {languages.map(({ value, label }) => (
               <option value={value} key={value}>
                 {label}
@@ -181,7 +182,7 @@ function SearchForm({
           <Form.Control
             type="date"
             name="dateStart"
-            defaultValue={submittedData?.dateStart}
+            defaultValue={searchData?.dateStart || defaultData.dateStart}
           />
         </Form.Group>
 
@@ -190,7 +191,7 @@ function SearchForm({
           <Form.Control
             type="date"
             name="dateEnd"
-            defaultValue={submittedData?.dateEnd}
+            defaultValue={searchData?.dateEnd || defaultData.dateEnd}
           />
         </Form.Group>
 
