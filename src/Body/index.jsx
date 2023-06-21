@@ -7,55 +7,26 @@ import Events from "./Events";
 function Body() {
   const [dataList, setDataList] = useState(null);
   const [info, setInfo] = useState(null);
+
+  const props = {
+    info,
+    setInfo,
+    dataList,
+    setDataList,
+  };
+
   return (
     <>
       <SideBar setDataList={setDataList} setInfo={setInfo} />
 
       <Routes>
-        <Route
-          path="/"
-          element={
-            <News
-              dataList={dataList}
-              setDataList={setDataList}
-              info={info}
-              setInfo={setInfo}
-            />
-          }
-        />
-        <Route
-          path="/:keyword"
-          element={
-            <News
-              dataList={dataList}
-              setDataList={setDataList}
-              info={info}
-              setInfo={setInfo}
-            />
-          }
-        />
-        <Route
-          path="/events"
-          element={
-            <Events
-              dataList={dataList}
-              setDataList={setDataList}
-              info={info}
-              setInfo={setInfo}
-            />
-          }
-        />
-        <Route
-          path="/events/:keyword"
-          element={
-            <Events
-              dataList={dataList}
-              setDataList={setDataList}
-              info={info}
-              setInfo={setInfo}
-            />
-          }
-        />
+
+        <Route path="/" element={<News {...props} />} />
+        <Route path="/:keyword" element={<News {...props} />} />
+
+        <Route path="/events" element={<Events {...props} />} />
+        <Route path="/events/:keyword" element={<Events {...props} />} />
+        
       </Routes>
     </>
   );
