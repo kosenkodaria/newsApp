@@ -5,9 +5,7 @@ import SearchForm from './SearchForm';
 import { defaultData } from '../services/apiService';
 
 
-
-
-function SideBar({ setNewsList , setInfo}) {
+function SideBar() {
 
   const [show, setShow] = useState(false);
   const [submittedData, setSubmittedData] = useState(defaultData);
@@ -37,8 +35,6 @@ function SideBar({ setNewsList , setInfo}) {
          submittedData={submittedData}
           setSubmittedData={setSubmittedData} 
           handleRestore={handleRestore}
-          setNewsList={setNewsList}
-          setInfo={setInfo}
           />
         </Offcanvas.Body>
 

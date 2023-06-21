@@ -1,23 +1,18 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-
-import { getArticles } from "../services/apiService";
-// import moment from "moment";
-import ErrorModal from "../ErrorModal";
+import { setSearchData, setDataList } from "../services/stateService";
+import { useDispatch } from "react-redux";
 
 function SearchForm({
   closeSideBar,
   submittedData,
   setSubmittedData,
   handleRestore,
-  setDataList,
-  setInfo,
 }) {
   const [articlesSortDisabled, setArticlesSortDisabled] = useState(false);
 
-  const [errorMessage, setErrorMessage] = useState(null);
-
+  const dispatch = useDispatch();
 
   const resultType = [
     "articles",
@@ -61,14 +56,19 @@ function SearchForm({
     };
 
     setSubmittedData(data);
-    console.log("data", data);
-    getArticles(data)
-      .then(({ articles, info }) => {
-        articles && setDataList(articles.results);
-        info ? setInfo(info) : setInfo(null);
-        closeSideBar();
-      })
-      .catch((error) => setErrorMessage(error.toString()));
+    dispatch(setSearchData(data));
+    dispatch(setDataList(null));
+
+    closeSideBar();
+
+    // console.log("data", data);
+    // getArticles(data)
+    //   .then(({ articles, info }) => {
+    //     articles && dispatch(setDataList(articles.results));
+    //     info ? setInfo(info) : setInfo(null);
+    //     closeSideBar();
+    //   })
+    //   .catch((error) => setErrorMessage(error.toString()));
     // .then((res) => {
     //   closeSideBar();
     //   setNewsList(res.articles.results);
@@ -89,7 +89,6 @@ function SearchForm({
       setArticlesSortDisabled(false);
     }
   };
-
 
   const languages = [
     {
@@ -168,7 +167,7 @@ function SearchForm({
 
         <Form.Group className="mb-3">
           <Form.Label>Language</Form.Label>
-          <Form.Select name="lang"  defaultValue={submittedData?.lang}>
+          <Form.Select name="lang" defaultValue={submittedData?.lang}>
             {languages.map(({ value, label }) => (
               <option value={value} key={value}>
                 {label}
@@ -203,11 +202,6 @@ function SearchForm({
           Restore
         </Button>
       </Form>
-
-      <ErrorModal
-        errorMessage={errorMessage}
-        handleClose={() => setErrorMessage(null)}
-      />
     </>
   );
 }

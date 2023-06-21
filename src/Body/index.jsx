@@ -5,19 +5,16 @@ import { Routes, Route } from "react-router-dom";
 import Events from "./Events";
 
 function Body() {
-  const [dataList, setDataList] = useState(null);
   const [info, setInfo] = useState(null);
 
   const props = {
     info,
     setInfo,
-    dataList,
-    setDataList,
   };
 
   return (
     <>
-      <SideBar setDataList={setDataList} setInfo={setInfo} />
+      <SideBar />
 
       <Routes>
 
@@ -26,7 +23,7 @@ function Body() {
 
         <Route path="/events" element={<Events {...props} />} />
         <Route path="/events/:keyword" element={<Events {...props} />} />
-        
+
       </Routes>
     </>
   );
