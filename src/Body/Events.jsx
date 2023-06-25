@@ -4,6 +4,7 @@ import ErrorModal from "../ErrorModal";
 import { useParams } from "react-router-dom";
 import DataList from "./DataList";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 function Events({ info, setInfo }) {
  
@@ -13,6 +14,8 @@ function Events({ info, setInfo }) {
   const [errorMessage, setErrorMessage] = useState(null);
   const [page, setPage] = useState(1);
   const { keyword } = useParams();
+
+  const dispatch = useDispatch();
   
   useEffect(() => {
     getEvents({
@@ -25,16 +28,12 @@ function Events({ info, setInfo }) {
         events && setDataList(events.results);
         info ? setInfo(info) : setInfo(null);
       })
-      .catch((error) => setErrorMessage(error.toString()));
+      .catch((error) => dispatch(setErrorMessage(error.toString())));
   }, [setDataList, setInfo, page, keyword, searchData]);
 
   return (
     <>
       <DataList info={info} dataList={dataList} page={page} setPage={setPage} />
-      <ErrorModal
-        errorMessage={errorMessage}
-        handleClose={() => setErrorMessage(null)}
-      />
     </>
   );
 }
