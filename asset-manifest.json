@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/http//kosenkodaria.github,io/newsApp/static/css/main.37e6c68c.css",
+    "main.js": "/http//kosenkodaria.github,io/newsApp/static/js/main.345c62ce.js",
+    "index.html": "/http//kosenkodaria.github,io/newsApp/index.html",
+    "main.37e6c68c.css.map": "/http//kosenkodaria.github,io/newsApp/static/css/main.37e6c68c.css.map",
+    "main.345c62ce.js.map": "/http//kosenkodaria.github,io/newsApp/static/js/main.345c62ce.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.37e6c68c.css",
+    "static/js/main.345c62ce.js"
+  ]
+}
