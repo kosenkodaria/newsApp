@@ -22,7 +22,7 @@ function Events({ info, setInfo }) {
       ...(keyword ? { keyword } : {}),
     })
       .then(({ events, info }) => {
-        events && setDataList(events.results);
+        events && setDataList(dataList ? [...dataList, ...events.results] : events.results);
         info ? setInfo(info) : setInfo(null);
       })
       .catch((error) => dispatch(setErrorMessage(error.toString())));
