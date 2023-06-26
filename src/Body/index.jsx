@@ -18,11 +18,11 @@ function Body() {
 
       <Routes>
 
-        <Route path="/" element={<News {...props} />} />
-        <Route path="/:keyword" element={<News {...props} />} />
+        <Route path="/newsApp" element={<News {...props} />} />
+        <Route path="/newsApp/:keyword" element={<News {...props} />} />
 
-        <Route path="/events" element={<Events {...props} />} />
-        <Route path="/events/:keyword" element={<Events {...props} />} />
+        <Route path="/newsApp/events" element={<Events {...props} />} />
+        <Route path="/newsApp/events/:keyword" element={<Events {...props} />} />
 
       </Routes>
     </>

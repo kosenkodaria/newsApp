@@ -2,9 +2,11 @@
   "name": "news-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://kosenkodaria.github.io/newsApp",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "bootstrap": "^5.2.3",
+    "gh-pages": "^5.0.0",
     "i18next": "^22.5.0",
     "i18next-browser-languagedetector": "^7.0.2",
     "i18next-http-backend": "^2.2.1",
@@ -22,7 +24,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build"
   },
   "eslintConfig": {
     "extends": [

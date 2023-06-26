@@ -12,7 +12,7 @@ const TitleEvents = ({ eventDate, eventDateEnd }) => (
     End date:{moment(eventDateEnd).format("DD.MM.YYYY")}
   </>
 );
-const BodyNews = ({ title, image, body, source, url}) => {
+const BodyNews = ({ title, image, body, source, url}) => (
   <>
     {" "}
     <h4>{title}</h4>
@@ -26,8 +26,8 @@ const BodyNews = ({ title, image, body, source, url}) => {
         {source.title}
       </a>
     </div>
-  </>;
-};
+  </>
+);
 
 const BodyEvent =({ summary}) => <>{summary[Object.keys(summary)[0]]}</>
 

@@ -7,20 +7,20 @@ function Header() {
   return (
       <Navbar bg="dark" variant="dark">
         <Container className="header">
-          <Link to="/" className="navbar-brand">
+          <Link to="/newsApp" className="navbar-brand">
             News
           </Link>
           <Nav className="me-auto">
-            <Link to="/events" className="nav-link">
+            <Link to="/newsApp/events" className="nav-link">
               Events
             </Link>
-            <Link to="/events/Barak Obama" className="nav-link">
+            <Link to="/newsApp/events/Barak Obama" className="nav-link">
               Barak Obama Events
             </Link>
-            <Link to="/events/Elon Musk" className="nav-link">
+            <Link to="/newsApp/events/Elon Musk" className="nav-link">
               Elon Musk Events
             </Link>
-            <Link to="/Barak Obama" className="nav-link">
+            <Link to="/newsApp/Barak Obama" className="nav-link">
               Barak Obama News
             </Link>
           </Nav>
