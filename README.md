@@ -80,11 +80,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ## Installation
 
-1. Get a free API Key at [NewsApi] (https://newsapi.ai/).
-For this you need to create an account at the website. In order not to use your personal email use [servise] (https://temp-mail.org/ru/).
+1. Get a free API Key at [NewsApi](https://newsapi.ai/).
+For this you need to create an account at the website. In order not to use your personal email use [servise](https://temp-mail.org/ru/).
 
 2. Enter your API in **.env**.
-const API_KEY = 'ENTER YOUR API';
+    `const API_KEY = 'ENTER YOUR API';`
 
 ## Contact 
 1. [Creator](https://github.com/kosenkodaria).
