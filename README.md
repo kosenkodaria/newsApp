@@ -3,8 +3,8 @@ The project was created by Daria Kosenko during the Frontend developer intensive
 The aim of the project is to provide users with the latest news in the world. There is an opportunity to filter the news according your request and find out the information you need.
 
 ## Build with:
-*![/public/react.svg](https://react.dev/)
-*![Bootstrap](https://getbootstrap.com/)
+*[React](https://react.dev/)
+*[Bootstrap](https://getbootstrap.com/)
 
 # Getting Started with Create React App
 
