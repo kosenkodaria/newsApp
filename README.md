@@ -1,3 +1,10 @@
+
+## Build with:
+-![React](/public/react.svg)
+-< a href="https://getbootstrap.com/"
+<img src="/public/react.svg" alt="Bootstrap">
+/>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +75,15 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Installation
+
+1.Get a free API Key at [NewsApi] (https://newsapi.ai/).
+For this you need to create an account at the website. In order not to use your personal email use [servise] (https://temp-mail.org/ru/).
+
+2.Enter your API in **.env**.
+const API_KEY = 'ENTER YOUR API';
+
+## Contact 
+[Creator] (https://github.com/kosenkodaria).
+[Project] (https://github.com/kosenkodaria/newsApp).
