@@ -3,9 +3,9 @@ The project was created by Daria Kosenko during the Frontend developer intensive
 The aim of the project is to provide users with the latest news in the world. There is an opportunity to filter the news according your request and find out the information you need.
 
 ## Build with:
-1.[React](https://react.dev/)
+* [React](https://react.dev/)
 
-2.[Bootstrap](https://getbootstrap.com/)
+* [Bootstrap](https://getbootstrap.com/)
 
 # Getting Started with Create React App
 
@@ -80,13 +80,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ## Installation
 
-1.Get a free API Key at [NewsApi] (https://newsapi.ai/).
+1. Get a free API Key at [NewsApi] (https://newsapi.ai/).
 For this you need to create an account at the website. In order not to use your personal email use [servise] (https://temp-mail.org/ru/).
 
-2.Enter your API in **.env**.
+2. Enter your API in **.env**.
 const API_KEY = 'ENTER YOUR API';
 
 ## Contact 
-1.[Creator] (https://github.com/kosenkodaria).
+1. [Creator](https://github.com/kosenkodaria).
 
-2.[Project] (https://github.com/kosenkodaria/newsApp).
+2. [Project](https://github.com/kosenkodaria/newsApp).
