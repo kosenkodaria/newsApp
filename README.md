@@ -1,9 +1,10 @@
+## About 
+The project was created by Daria Kosenko during the Frontend developer intensive course by [Gamma Intelligence](https://www.gammatest.net/).
+The aim of the project is to provide users with the latest news in the world. There is an opportunity to filter the news according your request and find out the information you need.
 
 ## Build with:
--![React](/public/react.svg)
--< a href="https://getbootstrap.com/"
-<img src="/public/react.svg" alt="Bootstrap">
-/>
+*![React](https://react.dev/)
+*![Bootstrap](https://getbootstrap.com/)
 
 # Getting Started with Create React App
 
