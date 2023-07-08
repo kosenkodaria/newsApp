@@ -3,8 +3,9 @@ The project was created by Daria Kosenko during the Frontend developer intensive
 The aim of the project is to provide users with the latest news in the world. There is an opportunity to filter the news according your request and find out the information you need.
 
 ## Build with:
-*[React](https://react.dev/)
-*[Bootstrap](https://getbootstrap.com/)
+1.[React](https://react.dev/)
+
+2.[Bootstrap](https://getbootstrap.com/)
 
 # Getting Started with Create React App
 
@@ -86,5 +87,6 @@ For this you need to create an account at the website. In order not to use your 
 const API_KEY = 'ENTER YOUR API';
 
 ## Contact 
-[Creator] (https://github.com/kosenkodaria).
-[Project] (https://github.com/kosenkodaria/newsApp).
+1.[Creator] (https://github.com/kosenkodaria).
+
+2.[Project] (https://github.com/kosenkodaria/newsApp).
