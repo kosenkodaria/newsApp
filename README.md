@@ -87,6 +87,6 @@ For this you need to create an account at the website. In order not to use your 
     `const API_KEY = 'ENTER YOUR API';`
 
 ## Contact 
-1. [Creator](https://github.com/kosenkodaria).
+1. [Creator](https://github.com/kosenkodaria)
 
-2. [Project](https://github.com/kosenkodaria/newsApp).
+2. [Project](https://github.com/kosenkodaria/newsApp)
